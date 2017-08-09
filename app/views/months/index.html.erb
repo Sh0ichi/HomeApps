@@ -29,22 +29,26 @@
     <div class="panel-heading">年間収支</div>
     <div class="panel-body">
       <table class="table">
-        <% total = 0 %>
+        <% income_total = 0 %>
+        <% expens_total = 0 %>
         <tr>
           <th>月</th>
           <th>収入</th>
           <th>支出</th>
         </tr>
         <% @index_months.each do |month| %>
-        <% total += month.income %>
+        <% income_total += month.income %>
+        <% expens_total += month.expens %>
         <tr>
           <th><%= month.record_month.to_s(:month_only) %></th>
           <td><%= number_with_precision(month.income, precision: 0) %></td>
+          <td><%= number_with_precision(month.expens, precision: 0) %></td>
         </tr>
         <% end %>
         <tr>
           <th>合計</th>
-          <td><%= number_with_precision(total, precision: 0) %></td>
+          <td><%= number_with_precision(income_total, precision: 0) %></td>
+          <td><%= number_with_precision(expens_total, precision: 0) %></td>
         </tr>
       </table>
     </div>
