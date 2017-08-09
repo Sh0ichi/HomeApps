@@ -1,0 +1,9 @@
+<% if @diary.errors.any? %>
+<div id="error_explanation">
+  <div class="alert alert-danger">
+    <% @diary.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </div>
+</div>
+<% end %>

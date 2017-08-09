@@ -1,0 +1,42 @@
+<%= form_for @month do |month| %>
+<%= render 'shared/month_error_messages' %>
+<div class="panel panel-primary">
+  <div class="panel-heading">収入</div>
+  <div class="panel-body">
+    <div class="row">
+      <div class='col-sm-12'>
+        <div class="form-group">
+          <label for="month_record_month">月</label>
+          <% if @path.is('months#new', 'months#create') %>
+          <%= month.text_field :record_month, class: "form-control datetimepicker", data: { :date_format => 'YYYY/MM' }, title: "日付" %>
+          <% end %>
+          <% if @path.is('months#edit', 'months#update') %>
+          <%= month.text_field :record_month, class: "form-control datetimepicker", data: { :date_format => 'YYYY/MM' }, readonly: "readonly" %>
+          <% end %>
+        </div>
+        <label for="month_income">収入合計</label>
+        <div class="form-group">
+          <div class="input-group">
+            <%= month.text_field :income, value: number_with_precision(@month.income, precision: 0), id: "income_val", class: "form-control text-right", readonly: "readonly" %>
+            <div class="input-group-addon">円</div>
+          </div>
+        </div>
+        <label for="month_income_log">収入</label>
+        <%= month.text_area :income_log , id: "income", class: "form-control" %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="btn-toolbar">
+  <div class="btn-group">
+    <%= link_to "年間収支へ戻る", months_path(), class: "btn btn-primary" %>
+    <% if @path.is('months#new', 'months#create') %>
+    <%= month.submit "登録", class: "btn btn-primary" %>
+    <%= month.submit "連続登録", class: "btn btn-primary", name:"continue_btn" %>
+    <% end %>
+    <% if @path.is('months#edit', 'months#update') %>
+    <%= month.submit "修正", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+<% end %>

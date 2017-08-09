@@ -1,0 +1,375 @@
+<%= form_for @diary do |diary| %>
+<%= render 'shared/diary_error_messages' %>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    日付
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class='col-sm-12'>
+        <% if @path.is('diaries#new', 'diaries#create') %>
+        <%= diary.text_field :record_date, class: "form-control datetimepicker", data: { :date_format => 'YYYY/MM/DD' }, title: "日付" %>
+        <% end %>
+        <% if @path.is('diaries#edit', 'diaries#update') %>
+        <%= diary.text_field :record_date, class: "form-control datetimepicker", data: { :date_format => 'YYYY/MM/DD' }, readonly: "readonly" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="panel with-nav-tabs panel-primary">
+  <div class="panel-heading">
+    <ul class="nav nav-tabs">
+      <li>
+        <a href="#lives" role="presentation" data-toggle="tab">生活費</a>
+      </li>
+      <li class="active">
+        <a href="#foods" role="presentation" data-toggle="tab">食費</a>
+      </li>
+      <li>
+        <a href="#housewares" role="presentation" data-toggle="tab">雑貨</a>
+      </li>
+      <li>
+        <a href="#furnitures" role="presentation" data-toggle="tab">家具</a>
+      </li>
+      <li>
+        <a href="#others" role="presentation" data-toggle="tab">その他</a>
+      </li>
+    </ul>
+  </div>
+  <div class="panel-body">
+    <div class="tab-content">
+      <div class="tab-pane panel-body" id="lives">
+        <table class="table table-striped">
+          <tr>
+            <th>家賃</th>
+            <th>電気</th>
+            <th>水道</th>
+            <th>通信費</th>
+            <th>ガス</th>
+            <th>交通費</th>
+          </tr>
+          <tr>
+            <td>
+              <div class="input-group">
+                <%= diary.text_field :rent, value: number_with_precision(@diary.rent, precision: 0), id: "rent_val", class: "form-control text-right", readonly: "readonly" %>
+                <div class="input-group-addon">円</div>
+              </div>
+            </td>
+            <td>
+              <div class="input-group">
+                <%= diary.text_field :electric, value: number_with_precision(@diary.electric, precision: 0), id: "electric_val", class: "form-control text-right", readonly: "readonly" %>
+                <div class="input-group-addon">円</div>
+              </div>
+            </td>
+            <td>
+              <div class="input-group">
+                <%= diary.text_field :water, value: number_with_precision(@diary.water, precision: 0), id: "water_val", class: "form-control text-right", readonly: "readonly" %>
+                <div class="input-group-addon">円</div>
+              </div>
+            </td>
+            <td>
+              <div class="input-group">
+                <%= diary.text_field :communicate, value: number_with_precision(@diary.communicate, precision: 0), id: "communicate_val", class: "form-control text-right", readonly: "readonly" %>
+                <div class="input-group-addon">円</div>
+              </div>
+            </td>
+            <td>
+              <div class="input-group">
+                <%= diary.text_field :gas, value: number_with_precision(@diary.gas, precision: 0), id: "gas_val", class: "form-control text-right", readonly: "readonly" %>
+                <div class="input-group-addon">円</div>
+              </div>
+            </td>
+            <td>
+              <div class="input-group">
+                <%= diary.text_field :traffic, value: number_with_precision(@diary.traffic, precision: 0), id: "traffic_val", class: "form-control text-right", readonly: "readonly" %>
+                <div class="input-group-addon">円</div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><%= diary.text_area :rent_log , id: "rent", class: "form-control" %></td>
+            <td><%= diary.text_area :electric_log , id: "electric", class: "form-control" %></td>
+            <td><%= diary.text_area :water_log , id: "water", class: "form-control" %></td>
+            <td><%= diary.text_area :communicate_log , id: "communicate", class: "form-control" %></td>
+            <td><%= diary.text_area :gas_log , id: "gas", class: "form-control" %></td>
+            <td><%= diary.text_area :traffic_log , id: "traffic", class: "form-control" %></td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="tab-pane active panel-body" id="foods">
+        <table class="table table-striped">
+          <tr>
+            <th>米・麦</th>
+            <th>パン・めん・その他</th>
+            <th>魚貝</th>
+            <th>肉類</th>
+            <th>鶏卵類</th>
+          </tr>
+          <tr>
+            <td>
+              <div class="input-group">
+                <%= diary.text_field :rice, value: number_with_precision(@diary.rice, precision: 0), id: "rice_val", class: "form-control text-right", readonly: "readonly" %>
+                <div class="input-group-addon">円</div>
+              </div>
+            </td>
+            <td>
+              <div class="input-group">
+                <%= diary.text_field :bread, value: number_with_precision(@diary.bread, precision: 0), id: "bread_val", class: "form-control text-right", readonly: "readonly" %>
+                <div class="input-group-addon">円</div>
+              </div>
+            </td>
+            <td>
+              <div class="input-group">
+                <%= diary.text_field :fish, value: number_with_precision(@diary.fish, precision: 0), id: "fish_val", class: "form-control text-right", readonly: "readonly" %>
+                <div class="input-group-addon">円</div>
+              </div>
+            </td>
+            <td>
+              <div class="input-group">
+                <%= diary.text_field :meat, value: number_with_precision(@diary.meat, precision: 0), id: "meat_val", class: "form-control text-right", readonly: "readonly" %>
+                <div class="input-group-addon">円</div>
+              </div>
+            </td>
+            <td>
+              <div class="input-group">
+                <%= diary.text_field :egg, value: number_with_precision(@diary.egg, precision: 0), id: "egg_val", class: "pure_value form-control text-right", readonly: "readonly" %>
+                <div class="input-group-addon">円</div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><%= diary.text_area :rice_log , id: "rice", class: "form-control" %></td>
+            <td><%= diary.text_area :bread_log , id: "bread", class: "form-control" %></td>
+            <td><%= diary.text_area :fish_log , id: "fish", class: "form-control" %></td>
+            <td><%= diary.text_area :meat_log , id: "meat", class: "form-control" %></td>
+            <td><%= diary.text_area :egg_log , id: "egg", class: "form-control" %></td>
+          </tr>
+        </table>
+        <table class="table table-striped">
+          <tr>
+            <th>豆</th>
+            <th>豆製品</th>
+            <th>野菜</th>
+            <th>乾物・海草</th>
+            <th>加工食品</th>
+            <th>調味料</th>
+          </tr>
+          <tr>
+            <td>
+              <div class="input-group">
+                <%= diary.text_field :soy, value: number_with_precision(@diary.soy, precision: 0), id: "soy_val", class: "form-control text-right", readonly: "readonly" %>
+                <div class="input-group-addon">円</div>
+              </div>
+            </td>
+            <td>
+              <div class="input-group">
+                <%= diary.text_field :beans, value: number_with_precision(@diary.beans, precision: 0), id: "beans_val", class: "form-control text-right", readonly: "readonly" %>
+                <div class="input-group-addon">円</div>
+              </div>
+            </td>
+            <td>
+              <div class="input-group">
+                <%= diary.text_field :vegetable, value: number_with_precision(@diary.vegetable, precision: 0), id: "vegetable_val", class: "form-control text-right", readonly: "readonly" %>
+                <div class="input-group-addon">円</div>
+              </div>
+            </td>
+            <td>
+              <div class="input-group">
+                <%= diary.text_field :dry, value: number_with_precision(@diary.dry, precision: 0), id: "dry_val", class: "form-control text-right", readonly: "readonly" %>
+                <div class="input-group-addon">円</div>
+              </div>
+            </td>
+            <td>
+              <div class="input-group">
+                <%= diary.text_field :processed, value: number_with_precision(@diary.processed, precision: 0), id: "processed_val", class: "form-control text-right", readonly: "readonly" %>
+                <div class="input-group-addon">円</div>
+              </div>
+            </td>
+            <td>
+              <div class="input-group">
+                <%= diary.text_field :seasoning, value: number_with_precision(@diary.seasoning, precision: 0), id: "seasoning_val", class: "form-control text-right", readonly: "readonly" %>
+                <div class="input-group-addon">円</div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><%= diary.text_area :soy_log , id: "soy", class: "form-control" %></td>
+            <td><%= diary.text_area :beans_log , id: "beans", class: "form-control" %></td>
+            <td><%= diary.text_area :vegetable_log , id: "vegetable", class: "form-control" %></td>
+            <td><%= diary.text_area :dry_log , id: "dry", class: "form-control" %></td>
+            <td><%= diary.text_area :processed_log , id: "processed", class: "form-control" %></td>
+            <td><%= diary.text_area :seasoning_log , id: "seasoning", class: "form-control" %></td>
+          </tr>
+        </table>
+        <table class="table table-striped">
+          <tr>
+            <th>菓子</th>
+            <th>果物</th>
+            <th>酒・飲料</th>
+            <th>外食</th>
+            <th>その他</th>
+          </tr>
+          <tr>
+            <td>
+              <div class="input-group">
+                <%= diary.text_field :pastry, value: number_with_precision(@diary.pastry, precision: 0), id: "pastry_val", class: "form-control text-right", readonly: "readonly" %>
+                <div class="input-group-addon">円</div>
+              </div>
+            </td>
+            <td>
+              <div class="input-group">
+                <%= diary.text_field :fruit, value: number_with_precision(@diary.fruit, precision: 0), id: "fruit_val", class: "form-control text-right", readonly: "readonly" %>
+                <div class="input-group-addon">円</div>
+              </div>
+            </td>
+            <td>
+              <div class="input-group">
+                <%= diary.text_field :beverage, value: number_with_precision(@diary.beverage, precision: 0), id: "beverage_val", class: "form-control text-right", readonly: "readonly" %>
+                <div class="input-group-addon">円</div>
+              </div>
+            </td>
+            <td>
+              <div class="input-group">
+                <%= diary.text_field :out, value: number_with_precision(@diary.out, precision: 0), id: "out_val", class: "form-control text-right", readonly: "readonly" %>
+                <div class="input-group-addon">円</div>
+              </div>
+            </td>
+            <td>
+              <div class="input-group">
+                <%= diary.text_field :other_food, value: number_with_precision(@diary.other, precision: 0), id: "other_food_val", class: "form-control text-right", readonly: "readonly" %>
+                <div class="input-group-addon">円</div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><%= diary.text_area :pastry_log , id: "pastry", class: "form-control" %></td>
+            <td><%= diary.text_area :fruit_log , id: "fruit", class: "form-control" %></td>
+            <td><%= diary.text_area :beverage_log , id: "beverage", class: "form-control" %></td>
+            <td><%= diary.text_area :out_log , id: "out", class: "form-control" %></td>
+            <td><%= diary.text_area :other_food_log , id: "other_food", class: "form-control" %></td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="tab-pane panel-body" id="housewares">
+        <table class="table table-striped">
+          <tr>
+            <th>生活雑貨</th>
+            <th>台所用品</th>
+            <th>洗濯・掃除用品</th>
+            <th>嗜好品</th>
+            <th>化粧品</th>
+            <th>衣類・靴</th>
+          </tr>
+          <tr>
+            <td>
+              <div class="input-group">
+                <%= diary.text_field :houseware, value: number_with_precision(@diary.houseware, precision: 0), id: "houseware_val", class: "form-control text-right", readonly: "readonly" %>
+                <div class="input-group-addon">円</div>
+              </div>
+            </td>
+            <td>
+              <div class="input-group">
+                <%= diary.text_field :kitchenware, value: number_with_precision(@diary.kitchenware, precision: 0), id: "kitchenware_val", class: "form-control text-right", readonly: "readonly" %>
+                <div class="input-group-addon">円</div>
+              </div>
+            </td>
+            <td>
+              <div class="input-group">
+                <%= diary.text_field :cleaning, value: number_with_precision(@diary.cleaning, precision: 0), id: "cleaning_val", class: "form-control text-right", readonly: "readonly" %>
+                <div class="input-group-addon">円</div>
+              </div>
+            </td>
+            <td>
+              <div class="input-group">
+                <%= diary.text_field :hobby, value: number_with_precision(@diary.hobby, precision: 0), id: "hobby_val", class: "form-control text-right", readonly: "readonly" %>
+                <div class="input-group-addon">円</div>
+              </div>
+            </td>
+            <td>
+              <div class="input-group">
+                <%= diary.text_field :cosmetics, value: number_with_precision(@diary.cosmetics, precision: 0), id: "cosmetics_val", class: "form-control text-right", readonly: "readonly" %>
+                <div class="input-group-addon">円</div>
+              </div>
+            </td>
+            <td>
+              <div class="input-group">
+                <%= diary.text_field :clothing, value: number_with_precision(@diary.clothing, precision: 0), id: "clothing_val", class: "form-control text-right", readonly: "readonly" %>
+                <div class="input-group-addon">円</div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><%= diary.text_area :houseware_log , id: "houseware", class: "form-control" %></td>
+            <td><%= diary.text_area :kitchenware_log , id: "kitchenware", class: "form-control" %></td>
+            <td><%= diary.text_area :cleaning_log , id: "cleaning", class: "form-control" %></td>
+            <td><%= diary.text_area :hobby_log , id: "hobby", class: "form-control" %></td>
+            <td><%= diary.text_area :cosmetics_log , id: "cosmetics", class: "form-control" %></td>
+            <td><%= diary.text_area :clothing_log , id: "clothing", class: "form-control" %></td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="tab-pane panel-body" id="furnitures">
+        <table class="table table-striped">
+          <tr>
+            <th>家具</th>
+            <th>台所用品</th>
+          </tr>
+          <tr>
+            <td>
+              <div class="input-group">
+                <%= diary.text_field :furniture, value: number_with_precision(@diary.furniture, precision: 0), id: "furniture_val", class: "form-control text-right", readonly: "readonly" %>
+                <div class="input-group-addon">円</div>
+              </div>
+            </td>
+            <td>
+              <div class="input-group">
+                <%= diary.text_field :consumer_electronics, value: number_with_precision(@diary.consumer_electronics, precision: 0), id: "consumer_electronics_val", class: "form-control text-right", readonly: "readonly" %>
+                <div class="input-group-addon">円</div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><%= diary.text_area :furniture_log , id: "furniture", class: "form-control" %></td>
+            <td><%= diary.text_area :consumer_electronics_log , id: "consumer_electronics", class: "form-control" %></td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="tab-pane panel-body" id="others">
+        <table class="table table-striped">
+          <tr>
+            <th>その他</th>
+          </tr>
+          <tr>
+            <td>
+              <div class="input-group">
+                <%= diary.text_field :other, value: number_with_precision(@diary.other, precision: 0), id: "other_val", class: "form-control text-right", readonly: "readonly" %>
+                <div class="input-group-addon">円</div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><%= diary.text_area :other_log , id: "other", class: "form-control" %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="btn-toolbar">
+  <div class="btn-group">
+    <%= link_to "一覧へ戻る", diaries_path(), class: "btn btn-primary" %>
+    <% if @path.is('diaries#new', 'diaries#create') %>
+    <%= diary.submit "登録", class: "btn btn-primary" %>
+    <%= diary.submit "連続登録", class: "btn btn-primary", name:"continue_btn" %>
+    <% end %>
+    <% if @path.is('diaries#edit', 'diaries#update') %>
+    <%= diary.submit "修正", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+<% end %>

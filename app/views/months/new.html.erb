@@ -1,0 +1,14 @@
+<% provide(:title, "新規登録 | 収支簿") %>
+<%= render 'shared/headmenu' %>
+<%= form_for @month do |month| %>
+<div class="container">
+  <div class="main">
+    <div class="page-header">
+      <h3>収支簿
+        <small>新規登録</small>
+      </h3>
+    </div>
+    <%= render 'shared/months_input_body' %>
+  </div>
+</div>
+<% end %>
